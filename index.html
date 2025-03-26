@@ -7,24 +7,35 @@
     <title>تولدت مبارک فرزند ارشد بهار</title>
     <meta name="description" content=" منا طاهری جشن تولد زیبا برای فرزند ارشد بهار با ویدیوی اختصاصی، موسیقی شاد و تصاویر به یادماندنی. تولدت مبارک عزیزم!">
     <meta name="keywords" content="تولد, تولدت مبارک, جشن تولد, فرزند ارشد, بهار, ویدیو تولد, منا طاهری"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" />
-    <link rel="stylesheet" href="style.css" />
+	<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <link rel="stylesheet" href="styles/style.css" media="print" onload="this.media='all'"/>
     <style>
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            background-image: url('images/pattern.jpg');
-            background-repeat: repeat;
-            background-size: auto; /* Keeps the original size of the PNG */
             overflow: hidden;
+        }
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
         }
     </style>
   </head>
   
   <body>
-    <div><img src="images/mona.gif" loading="lazy" /></div>
+      <video class="background-video" autoplay loop muted preload="none" poster="images/cover.webp">
+        <source src="videos/bg3.webm" type="video/webm">
+        مرورگر شما از ویدئو پشتیبانی نمی‌کند.
+    </video>
+    <div><img src="images/mona.webp" loading="lazy" /></div>
     
     <div class="music-container" id="music-container">
       <div class="music-info">
@@ -34,10 +45,10 @@
         </div>
       </div>
 
-      <audio src="music/Reza-Taher-Ajab-Hali-Dari.mp3" id="audio" preload="metadata"></audio>
+      <audio src="music/Reza-Taher-Ajab-Hali-Dari.mp3" id="audio" preload="none"></audio>
 
       <div class="img-container">
-        <img src="images/Reza-Taher-Ajab-Hali-Dari.jpg" alt="music-cover" id="cover" loading="lazy" />
+        <img src="images/Reza-Taher-Ajab-Hali-Dari.webp" alt="music-cover" id="cover" loading="lazy" />
       </div>
       <div class="navigation">
         <button id="prev" class="action-btn">
@@ -52,6 +63,6 @@
       </div>
     </div>
 
-    <script src="script.js" defer></script>
+    <script src="scripts/script.js" defer></script>
   </body>
 </html>
