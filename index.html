@@ -55,13 +55,18 @@
 
 
 <script>
-  let deferredPrompt;
+   let deferredPrompt;
+  const installBox = document.getElementById("install-box");
   const installBtn = document.getElementById("install-btn");
 
   window.addEventListener("beforeinstallprompt", (event) => {
     event.preventDefault();
     deferredPrompt = event;
-    document.getElementById("install-box").style.display = "block";
+    
+    // اگر اپ از قبل نصب نشده بود، دکمه نمایش داده شود
+    if (!window.matchMedia('(display-mode: standalone)').matches) {
+      installBox.style.display = "block";
+    }
   });
 
   installBtn.addEventListener("click", () => {
@@ -69,19 +74,19 @@
     deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === "accepted") {
         console.log("User accepted the install prompt");
+        installBox.style.display = "none";  // مخفی کردن دکمه بعد از نصب
       } else {
         console.log("User dismissed the install prompt");
       }
       deferredPrompt = null;
     });
   });
-</script>
-    <script src="scripts/script.js" defer></script>
-	<script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js")
-      .then(() => console.log("Service Worker Registered"));
-  }
+
+  // بررسی اگر برنامه از قبل نصب شده باشد، دکمه نمایش داده نشود
+  if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+    installBox.style.display = "none";
+  } 
+  
 </script>
   </body>
 </html>
