@@ -39,7 +39,12 @@
     
     <div class="music-container" id="music-container">
       <div class="music-info">
-        <h4 id="title"></h4>
+		<div id="album-name"></div>
+		<div id="track-name"></div>
+		<div id="track-time" class="active">
+        <div id="currTime"></div>
+        <div id="durTime"></div>
+      </div>
         <div class="progress-container" id="progress-container">
           <div class="progress" id="progress"></div>
         </div>
@@ -47,7 +52,7 @@
 
       <audio src="music/Reza-Taher-Ajab-Hali-Dari.mp3" id="audio" preload="none"></audio>
 
-      <div class="img-container">
+      <div class="img-container" id="img-container">
         <img src="images/Reza-Taher-Ajab-Hali-Dari.webp" alt="music-cover" id="cover" loading="lazy" />
       </div>
       <div class="navigation">
@@ -62,6 +67,7 @@
         </button>
       </div>
     </div>
+
 <button id="install-btn" style="display: none;">نصب</button>
 
 <script>

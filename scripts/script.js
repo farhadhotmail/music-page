@@ -1,4 +1,5 @@
 const musicContainer = document.getElementById('music-container');
+const imgContainer = document.getElementById('img-container');
 const playBtn = document.getElementById('play');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
@@ -6,13 +7,14 @@ const nextBtn = document.getElementById('next');
 const audio = document.getElementById('audio');
 const progress = document.getElementById('progress');
 const progressContainer = document.getElementById('progress-container');
-const title = document.getElementById('title');
+const albumName = document.getElementById('album-name');
+const trackName = document.getElementById('track-name');
 const cover = document.getElementById('cover');
 const currTime = document.querySelector('#currTime');
 const durTime = document.querySelector('#durTime');
 
 // Song titles
-const songs = [ 'Reza Taher-Ajab Hali Dari', 'happy birthday persian', 'Dafina - Happy Birthday', 'Hooman Khayat-Tavalodet Mobarak', 'Hooman Gamno - Tavallod','Mohammad Alizadeh-Kheily Khosh halam'];
+const songs = [ 'Reza Taher-Ajab Hali Dari', 'Short Mews-Happy Birthday', 'Dafina - Happy Birthday', 'Hooman Khayat-Tavalodet Mobarak', 'Hooman Gamno - Tavallod','Mohammad Alizadeh-Khosh halam'];
 
 // Keep track of song
 let songIndex = 0;
@@ -22,7 +24,9 @@ loadSong(songs[songIndex]);
 
 // Update song details
 function loadSong(song) {
-  title.innerText = song;
+  let name = song.split('-');
+  albumName.innerText = name[1];
+  trackName.innerText = name[0] + ' | ' + name[1];
   audio.src = `music/${song}.mp3`;
   cover.src = `images/${song}.webp`;
 }
@@ -30,6 +34,7 @@ function loadSong(song) {
 // Play song
 function playSong() {
   musicContainer.classList.add('play');
+  imgContainer.classList.add('play');
   playBtn.querySelector('i.fas').classList.remove('fa-play');
   playBtn.querySelector('i.fas').classList.add('fa-pause');
 
@@ -39,6 +44,7 @@ function playSong() {
 // Pause song
 function pauseSong() {
   musicContainer.classList.remove('play');
+  imgContainer.classList.remove('play');
   playBtn.querySelector('i.fas').classList.add('fa-play');
   playBtn.querySelector('i.fas').classList.remove('fa-pause');
 
