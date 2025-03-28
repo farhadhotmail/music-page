@@ -61,12 +61,17 @@
   const installBox = document.getElementById("install-box");
   const installBtn = document.getElementById("install-btn");
 
+  function checkInstallation() {
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+    return isStandalone; // اگر برنامه نصب شده باشد، مقدار true برمی‌گردد
+  }
+
   window.addEventListener("beforeinstallprompt", (event) => {
     event.preventDefault();
     deferredPrompt = event;
     
-    // اگر اپ از قبل نصب نشده بود، دکمه نمایش داده شود
-    if (!window.matchMedia('(display-mode: standalone)').matches) {
+    // فقط زمانی دکمه را نمایش بده که اپلیکیشن نصب **نشده باشد**
+    if (!checkInstallation()) {
       installBox.style.display = "block";
     }
   });
@@ -76,7 +81,7 @@
     deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === "accepted") {
         console.log("User accepted the install prompt");
-        installBox.style.display = "none";  // مخفی کردن دکمه بعد از نصب
+        installBox.style.display = "none";  // بعد از نصب دکمه را مخفی کن
       } else {
         console.log("User dismissed the install prompt");
       }
@@ -84,8 +89,8 @@
     });
   });
 
-  // بررسی اگر برنامه از قبل نصب شده باشد، دکمه نمایش داده نشود
-  if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+  // بررسی دوباره هنگام لود شدن صفحه
+  if (checkInstallation()) {
     installBox.style.display = "none";
   }
 </script>
