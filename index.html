@@ -10,29 +10,13 @@
 	<link rel="preload" href="styles/font-awesome/6.7.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="styles/style.css" media="print" onload="this.media='all'"/>
 	<link rel="icon" type="image/png" href="images/icon-192x192.png">
-
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        .background-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-    </style>
 	<link rel="manifest" href="./manifest.json">
   </head>
   
   <body>
+    <div class="install-box">
+        <button class="install-btn">📲 نصب کن همیشه دم دست باشه 😍</button>
+    </div>
       <video class="background-video" autoplay loop muted preload="none" poster="images/cover.webp">
         <source src="videos/bg3.webm" type="video/webm">
         مرورگر شما از ویدئو پشتیبانی نمی‌کند.
@@ -70,7 +54,6 @@
       </div>
     </div>
 
-<button id="install-btn" style="display: none;">نصب</button>
 
 <script>
   let deferredPrompt;
@@ -79,7 +62,7 @@
   window.addEventListener("beforeinstallprompt", (event) => {
     event.preventDefault();
     deferredPrompt = event;
-    installBtn.style.display = "block";
+    document.getElementById("install-box").style.display = "block";
   });
 
   installBtn.addEventListener("click", () => {
