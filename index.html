@@ -7,7 +7,7 @@
     <title>تولدت مبارک فرزند ارشد بهار</title>
     <meta name="description" content=" منا طاهری جشن تولد زیبا برای فرزند ارشد بهار با ویدیوی اختصاصی، موسیقی شاد و تصاویر به یادماندنی. تولدت مبارک عزیزم!">
     <meta name="keywords" content="تولد, تولدت مبارک, جشن تولد, فرزند ارشد, بهار, ویدیو تولد, منا طاهری"> 
-	<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="styles/font-awesome/6.7.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="styles/style.css" media="print" onload="this.media='all'"/>
     <style>
         body, html {
@@ -27,6 +27,7 @@
             z-index: -1;
         }
     </style>
+	<link rel="manifest" href="./manifest.json">
   </head>
   
   <body>
@@ -61,7 +62,36 @@
         </button>
       </div>
     </div>
+<button id="install-btn" style="display: none;">نصب</button>
 
+<script>
+  let deferredPrompt;
+  const installBtn = document.getElementById("install-btn");
+
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    deferredPrompt = event;
+    installBtn.style.display = "block";
+  });
+
+  installBtn.addEventListener("click", () => {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === "accepted") {
+        console.log("User accepted the install prompt");
+      } else {
+        console.log("User dismissed the install prompt");
+      }
+      deferredPrompt = null;
+    });
+  });
+</script>
     <script src="scripts/script.js" defer></script>
+	<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => console.log("Service Worker Registered"));
+  }
+</script>
   </body>
 </html>

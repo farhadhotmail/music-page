@@ -12,7 +12,7 @@ const currTime = document.querySelector('#currTime');
 const durTime = document.querySelector('#durTime');
 
 // Song titles
-const songs = [ 'Reza-Taher-Ajab-Hali-Dari', 'happy-birthday-persian', 'Dafina - Happy Birthday', 'Hooman-Khayat-Tavalodet-Mobarak', 'Mohammad-Alizadeh-Kheily-Khosh-halam'];
+const songs = [ 'Reza Taher-Ajab Hali Dari', 'happy birthday persian', 'Dafina - Happy Birthday', 'Hooman Khayat-Tavalodet Mobarak', 'Hooman Gamno - Tavallod','Mohammad Alizadeh-Kheily Khosh halam'];
 
 // Keep track of song
 let songIndex = 0;
