@@ -12,8 +12,9 @@
 	<link rel="icon" type="image/png" href="images/icon-192x192.png">
 	<link rel="manifest" href="./manifest.json">
   </head>
+  
   <body>
-    <div id="install-box" style="display:none">
+<div id="install-box" style="display:none">
         <button id="install-btn">📲 نصب کن همیشه دم دست باشه 😍</button>
     </div>
       <video class="background-video" autoplay loop muted preload="none" poster="images/cover.webp">
@@ -55,7 +56,8 @@
 
 
 <script>
-   let deferredPrompt;
+<script>
+  let deferredPrompt;
   const installBox = document.getElementById("install-box");
   const installBtn = document.getElementById("install-btn");
 
@@ -85,8 +87,17 @@
   // بررسی اگر برنامه از قبل نصب شده باشد، دکمه نمایش داده نشود
   if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
     installBox.style.display = "none";
-  } 
-  
+  }
 </script>
+
+</script>
+  
+	<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => console.log("Service Worker Registered"));
+  }
+</script>
+  <script src="scripts/script.js" defer></script>
   </body>
 </html>
