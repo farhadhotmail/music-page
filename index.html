@@ -14,9 +14,6 @@
   </head>
   
   <body>
-<div id="install-box" style="display:none">
-        <button id="install-btn">📲 نصب کن همیشه دم دست باشه 😍</button>
-    </div>
       <video class="background-video" autoplay loop muted preload="none" poster="images/cover.webp">
         <source src="videos/bg3.webm" type="video/webm">
         مرورگر شما از ویدئو پشتیبانی نمی‌کند.
@@ -53,55 +50,6 @@
         </button>
       </div>
     </div>
-
-
-<script>
-<script>
-  let deferredPrompt;
-  const installBox = document.getElementById("install-box");
-  const installBtn = document.getElementById("install-btn");
-
-  function checkInstallation() {
-    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-    return isStandalone; // اگر برنامه نصب شده باشد، مقدار true برمی‌گردد
-  }
-
-  window.addEventListener("beforeinstallprompt", (event) => {
-    event.preventDefault();
-    deferredPrompt = event;
-    
-    // فقط زمانی دکمه را نمایش بده که اپلیکیشن نصب **نشده باشد**
-    if (!checkInstallation()) {
-      installBox.style.display = "block";
-    }
-  });
-
-  installBtn.addEventListener("click", () => {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === "accepted") {
-        console.log("User accepted the install prompt");
-        installBox.style.display = "none";  // بعد از نصب دکمه را مخفی کن
-      } else {
-        console.log("User dismissed the install prompt");
-      }
-      deferredPrompt = null;
-    });
-  });
-
-  // بررسی دوباره هنگام لود شدن صفحه
-  if (checkInstallation()) {
-    installBox.style.display = "none";
-  }
-</script>
-
-</script>
-	<script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js")
-      .then(() => console.log("Service Worker Registered"));
-  }
-</script>
   <script src="scripts/script.js" defer></script>
   </body>
 </html>
