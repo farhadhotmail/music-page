@@ -27,13 +27,13 @@ body {
             object-fit: cover;
             z-index: -1;
         }
-		.install-box {
+		#install-box {
             padding: 20px;
             text-align: center;
             color: white;
 			margin:5px;
         }
-        .install-btn {
+        #install-btn {
             background-color: white;
             color: #e52e71;
             border: none;
@@ -45,7 +45,7 @@ body {
             font-weight: bold;
         }
 
-        .install-btn:hover {
+        #install-btn:hover {
             background-color: #ff8a00;
             color: white;
         }
